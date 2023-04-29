@@ -54,9 +54,8 @@ It branchless_lower_bound(It begin, It end, const T & value, Cmp && compare)
     }
     for (step /= 2; step != 0; step /= 2)
     {
-        It candidate = begin + step;
-        if (compare(*candidate, value))
-            begin = candidate;
+        if (compare(begin[step], value))
+            begin += step;
     }
     return begin + compare(*begin, value);
 }
